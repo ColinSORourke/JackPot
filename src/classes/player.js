@@ -13,39 +13,50 @@ class Player extends Phaser.GameObjects.Sprite {
     update(){
         if (Phaser.Input.Keyboard.JustDown(keyUP)){
             let moveTo = this.room.getTileAt(this.tileX, this.tileY - 1)
-            if (moveTo.properties["collides"]){
-                // Don't Move
-            } else {
-                this.tileY -= 1
-                this.y = this.tileY * 16
+            if (moveTo){
+                if (moveTo.properties["collides"]){
+                    // Don't Move
+                } else {
+                    this.tileY -= 1
+                    this.y = this.tileY * 16
+                }
             }
         }
         if (Phaser.Input.Keyboard.JustDown(keyDOWN)){
             let moveTo = this.room.getTileAt(this.tileX, this.tileY + 1)
-            if (moveTo.properties["collides"]){
-                // Don't Move
-            } else {
-                this.tileY += 1
-                this.y = this.tileY * 16
+            if (moveTo){
+                if (moveTo.properties["collides"]){
+                    // Don't Move
+                } else {
+                    this.tileY += 1
+                    this.y = this.tileY * 16
+                }
             }
+            
         }
         if (Phaser.Input.Keyboard.JustDown(keyLEFT)){
             let moveTo = this.room.getTileAt(this.tileX - 1, this.tileY)
-            if (moveTo.properties["collides"]){
-                // Don't Move
-            } else {
-                this.tileX -= 1
-                this.x = this.tileX * 16
+            if (moveTo){
+                if (moveTo.properties["collides"]){
+                    // Don't Move
+                } else {
+                    this.tileX -= 1
+                    this.x = this.tileX * 16
+                }
             }
+            
         }
         if (Phaser.Input.Keyboard.JustDown(keyRIGHT)){
             let moveTo = this.room.getTileAt(this.tileX + 1, this.tileY)
-            if (moveTo.properties["collides"]){
-                // Don't Move
-            } else {
-                this.tileX += 1
-                this.x = this.tileX * 16
+            if (moveTo){
+                if (moveTo.properties["collides"]){
+                    // Don't Move
+                } else {
+                    this.tileX += 1
+                    this.x = this.tileX * 16
+                }
             }
+            
         }
     }
 
