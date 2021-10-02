@@ -11,10 +11,12 @@ class Play extends Phaser.Scene {
         let tileset = this.map.addTilesetImage('KenneySample', 'tiles')
         let layer = this.map.createLayer("Tile Layer 1", tileset, 0, 0); */
 
-        this.roomA = new Room(this, 'roomA', 200 ,200)
+        this.slots = new slotGrid(this, 100, 100, 20)
+        //this.roomA = new Room(this, 'roomA', 200 ,200)     
 
         // Create Player
-        this.player = new Player(this, 3, 3, 'testPlayer', 0, this.roomA)
+        this.player = new Player(this, 3, 3, 'testPlayer', 0, this.slots.randomRoom())
+
         // List of Enemies
         this.enemies = []
 
