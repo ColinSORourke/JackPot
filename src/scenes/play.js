@@ -7,14 +7,14 @@ class Play extends Phaser.Scene {
         console.log("We did it!")
 
         // Initialize Tilemap
-        this.map = this.add.tilemap('roomA');
+        /* this.map = this.add.tilemap('roomA');
         let tileset = this.map.addTilesetImage('KenneySample', 'tiles')
-        let layer = this.map.createLayer("Tile Layer 1", tileset, 0, 0);
+        let layer = this.map.createLayer("Tile Layer 1", tileset, 0, 0); */
 
         this.roomA = new Room(this, 'roomA', 200 ,200)
 
         // Create Player
-        this.player = new Player(this, 45, 80, 'testPlayer', 0, this.map)
+        this.player = new Player(this, 3, 3, 'testPlayer', 0, this.roomA)
 
         // Create Pause Button
         this.pauseButton = this.add.text(game.config.width/2, game.config.height - 25, 'PAUSE', 20).setOrigin(0.5)

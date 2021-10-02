@@ -1,62 +1,35 @@
 class Player extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, key, frame, room){
-        let myTile = room.getTileAtWorldXY(x,y)
-        super(scene, myTile.x * 16, myTile.y * 16, key, frame)
+        super(scene, 0, 0, key, frame)
         scene.add.existing(this)
         this.setOrigin(0,0)
 
-        this.tileX = myTile.x
-        this.tileY = myTile.y
         this.room = room
+        this.room.moveSpriteTo(this, x, y)
+        this.tileX = x
+        this.tileY = y
     }
 
     update(){
         if (Phaser.Input.Keyboard.JustDown(keyUP)){
-            let moveTo = this.room.getTileAt(this.tileX, this.tileY - 1)
-            if (moveTo){
-                if (moveTo.properties["collides"]){
-                    // Don't Move
-                } else {
-                    this.tileY -= 1
-                    this.y = this.tileY * 16
-                }
+            if (this.room.moveSpriteTo(this, this.tileX, this.tileY - 1)){
+                this.tileY -= 1
             }
         }
         if (Phaser.Input.Keyboard.JustDown(keyDOWN)){
-            let moveTo = this.room.getTileAt(this.tileX, this.tileY + 1)
-            if (moveTo){
-                if (moveTo.properties["collides"]){
-                    // Don't Move
-                } else {
-                    this.tileY += 1
-                    this.y = this.tileY * 16
-                }
+            if (this.room.moveSpriteTo(this, this.tileX, this.tileY + 1)){
+                this.tileY += 1
             }
-            
         }
         if (Phaser.Input.Keyboard.JustDown(keyLEFT)){
-            let moveTo = this.room.getTileAt(this.tileX - 1, this.tileY)
-            if (moveTo){
-                if (moveTo.properties["collides"]){
-                    // Don't Move
-                } else {
-                    this.tileX -= 1
-                    this.x = this.tileX * 16
-                }
+            if (this.room.moveSpriteTo(this, this.tileX - 1, this.tileY)){
+                this.tileX -= 1
             }
-            
         }
         if (Phaser.Input.Keyboard.JustDown(keyRIGHT)){
-            let moveTo = this.room.getTileAt(this.tileX + 1, this.tileY)
-            if (moveTo){
-                if (moveTo.properties["collides"]){
-                    // Don't Move
-                } else {
-                    this.tileX += 1
-                    this.x = this.tileX * 16
-                }
+            if (this.room.moveSpriteTo(this, this.tileX + 1, this.tileY)){
+                this.tileX += 1
             }
-            
         }
     }
 
