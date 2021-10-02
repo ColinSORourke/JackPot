@@ -11,10 +11,11 @@ class Play extends Phaser.Scene {
         let tileset = this.map.addTilesetImage('KenneySample', 'tiles')
         let layer = this.map.createLayer("Tile Layer 1", tileset, 0, 0); */
 
-        this.roomA = new Room(this, 'roomA', 200 ,200)
+        this.slots = new slotGrid(this, 100, 100, 20)
+        //this.roomA = new Room(this, 'roomA', 200 ,200)     
 
         // Create Player
-        this.player = new Player(this, 3, 3, 'testPlayer', 0, this.roomA)
+        this.player = new Player(this, 3, 3, 'testPlayer', 0, this.slots.randomRoom())
 
         // Create Pause Button
         this.pauseButton = this.add.text(game.config.width/2, game.config.height - 25, 'PAUSE', 20).setOrigin(0.5)
@@ -28,6 +29,8 @@ class Play extends Phaser.Scene {
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S)
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A)
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D)
+
+        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
     }
 
     update(){
