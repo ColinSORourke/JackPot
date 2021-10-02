@@ -6,14 +6,11 @@ class Play extends Phaser.Scene {
     create(){
         console.log("We did it!")
 
-        // Bouncing Head
-        this.head = this.physics.add.sprite(game.config.width/2, game.config.height/2, 'Head')
-        this.head.setCollideWorldBounds(true)
-        this.head.body.onWorldBounds = true
-        this.head.setVelocity(Phaser.Math.Between(100, 300), Phaser.Math.Between(100, 300));
-        this.head.setBounce(1)
+        this.map = this.add.tilemap('roomA');
+        let tileset = this.map.addTilesetImage('KenneySample', 'tiles')
+        let layer = this.map.createLayer("Tile Layer 1", tileset, 0, 0);
 
-        this.physics.world.on('worldbounds', this.onBounce);
+        this.player = new Player(this, 37, 69, 'testPlayer', 0, this.map)
 
         this.pauseButton = this.add.text(game.config.width/2, game.config.height - 25, 'PAUSE', 20).setOrigin(0.5)
         // Give Menu Button purpose
