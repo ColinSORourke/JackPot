@@ -12,7 +12,6 @@ class Room {
     }
 
     moveSpriteTo(sprite, x, y){
-        console.log(x, y)
         let moveTo = this.map.getTileAt(x, y)
         if (moveTo && !moveTo.properties["collides"]){
             sprite.x = this.x + x * 16
@@ -22,30 +21,38 @@ class Room {
             if (x == -1){
                 // Check if can go left one room
                 if (this.column != 0){
-                    sprite.room = this.parent.slots[this.column - 1][this.row]
-                    sprite.tileX = 6
-                    sprite.room.moveSpriteTo(sprite, sprite.tileX, sprite.tileY)
+                    let newRoom = this.parent.slots[this.column - 1][this.row]
+                    if (newRoom.moveSpriteTo(sprite, 6, sprite.tileY)) {
+                        sprite.room = newRoom
+                        sprite.tileX = 6
+                    }
                 }
             } else if (x == 7){
                 // check if can go right one room
                 if (this.column != 2){
-                    sprite.room = this.parent.slots[this.column + 1][this.row]
-                    sprite.tileX = 0
-                    sprite.room.moveSpriteTo(sprite, sprite.tileX, sprite.tileY)
+                    let newRoom = this.parent.slots[this.column + 1][this.row]
+                    if (newRoom.moveSpriteTo(sprite, 0, sprite.tileY)) {
+                        sprite.room = newRoom
+                        sprite.tileX = 0
+                    }
                 }
             } else if (y == -1){
                 // check if can go up one room
                 if (this.row != 0){
-                    sprite.room = this.parent.slots[this.column][this.row - 1]
-                    sprite.tileY = 6
-                    sprite.room.moveSpriteTo(sprite, sprite.tileX, sprite.tileY)
+                    let newRoom = this.parent.slots[this.column][this.row - 1]
+                    if (newRoom.moveSpriteTo(sprite, sprite.tileX, 6)) {
+                        sprite.room = newRoom
+                        sprite.tileY = 6
+                    }
                 }
             } else if (y == 7){
                 // check if can go down one room
                 if (this.row != 2){
-                    sprite.room = this.parent.slots[this.column][this.row + 1]
-                    sprite.tileY = 0
-                    sprite.room.moveSpriteTo(sprite, sprite.tileX, sprite.tileY)
+                    let newRoom = this.parent.slots[this.column][this.row + 1]
+                    if (newRoom.moveSpriteTo(sprite, sprite.tileX, 0)) {
+                        sprite.room = newRoom
+                        sprite.tileY = 0
+                    }
                 }
             }
             return false
