@@ -6,15 +6,10 @@ class Play extends Phaser.Scene {
     create(){
         console.log("We did it!")
 
-        // Initialize Tilemap
-        /* this.map = this.add.tilemap('roomA');
-        let tileset = this.map.addTilesetImage('KenneySample', 'tiles')
-        let layer = this.map.createLayer("Tile Layer 1", tileset, 0, 0); */
-
+        // Initialize slot machine dungeon
         this.slots = new slotGrid(this, 100, 100, 20)
-        //this.roomA = new Room(this, 'roomA', 200 ,200)     
 
-        // Create Player
+        // Create Player in the center of a random room
         this.player = new Player(this, 3, 3, 'testPlayer', 0, this.slots.randomRoom())
 
         // List of Enemies
@@ -36,15 +31,16 @@ class Play extends Phaser.Scene {
     }
 
     update(){
+        // Hook in the player's update function
         this.player.update();
         
-        if (Phaser.Input.Keyboard.JustUp(keySPACE)){ //spawn skeleton
+        if (Phaser.Input.Keyboard.JustUp(keySPACE)){ //spawn skeleton TEMPORARY
             let newEnemy = new Enemy(this, 1, 1, 'testEnemy', 0, this.player.room, 'skeleton')
             this.enemies.push(newEnemy)
         }
     }
 
-    //when player makes a move
+    //when player makes a move, update everything alongside them
     tick(){
         let tempPlayer = this.player;
         this.enemies.forEach((e) => {
