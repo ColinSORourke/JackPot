@@ -43,7 +43,7 @@ class Play extends Phaser.Scene {
             this.tick()    
         }
         if (Phaser.Input.Keyboard.JustUp(keySPACE)){ //spawn skeleton
-            let newEnemy = new Enemy(this, 1, 1, 'testEnemy', 0, this.roomA, 'skeleton')
+            let newEnemy = new Enemy(this, 1, 1, 'testEnemy', 0, this.player.room, 'skeleton')
             this.enemies.push(newEnemy)
         }
     }
