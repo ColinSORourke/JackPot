@@ -14,22 +14,32 @@ class Enemy extends Phaser.GameObjects.Sprite {
 
     update(player){
         //move one step towards player when called
-        if(this.tileX < player.tileX){
-            this.room.moveSpriteTo(this,this.tileX+1,this.tileY)
-            this.tileX+=1
-        }else if(this.tileX > player.tileX){
-            this.room.moveSpriteTo(this,this.tileX-1,this.tileY)
-            this.tileX-=1
-        }else{
-            if(this.tileY < player.tileY){
-                this.room.moveSpriteTo(this,this.tileX,this.tileY+1)
-                this.tileY+=1
-            }else {
-                this.room.moveSpriteTo(this,this.tileX,this.tileY-1)
-                this.tileY-=1
+        if(this.room.column < player.room.column || this.tileX < player.tileX){
+            if(!(this.room.column+1 == player.room.column)){
+                this.room.moveSpriteTo(this,this.tileX+1,this.tileY)
+                this.tileX+=1
             }
         }
-        //if going to move to player
-            //then dont
+        else if(this.room.column > player.room.column || this.tileX > player.tileX){
+            if(!(this.room.column-1 == player.room.column)){
+                this.room.moveSpriteTo(this,this.tileX-1,this.tileY)
+                this.tileX-=1
+            }
+        }
+        else{
+            if(this.room.row < player.room.row || this.tileY < player.tileY){
+                if(!(this.room.row+1 == player.room.row)){
+                    this.room.moveSpriteTo(this,this.tileX,this.tileY+1)
+                    this.tileY+=1
+                }
+            }
+            else(this.room.row < player.room.row || this.tileY > player.tileY){
+                if(!(this.room.row-1 == player.room.row)){
+                    this.room.moveSpriteTo(this,this.tileX,this.tileY-1)
+                this.tileY-=1
+                }
+            }
+        }
     }
+    
 }
