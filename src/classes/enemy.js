@@ -20,7 +20,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
             if (Math.abs(this.tileX - player.tileX) + Math.abs(this.tileY - player.tileY) <= 1){
                 player.health -= 1
             }
-            else if(this.tileX < player.tileX){
+            if(this.tileX < player.tileX){
                 this.room.moveSpriteTo(this,this.tileX+1,this.tileY)
                 this.tileX+=1
                 movedHor = true
@@ -28,20 +28,19 @@ class Enemy extends Phaser.GameObjects.Sprite {
                 this.room.moveSpriteTo(this,this.tileX-1,this.tileY)
                 this.tileX-=1
                 movedHor = true
-            }else{
-                if(this.tileY < player.tileY){
-                    this.room.moveSpriteTo(this,this.tileX,this.tileY+1)
-                    this.tileY+=1
-                    movedVer = true
-                }else if(this.tileY < player.tileY && !movedVer) {
-                    this.room.moveSpriteTo(this,this.tileX,this.tileY-1)
-                    this.tileY-=1
-                    movedVer = true
-                }
+            }
+            if(this.tileY < player.tileY && !movedHor){
+                this.room.moveSpriteTo(this,this.tileX,this.tileY+1)
+                this.tileY+=1
+                movedVer = true
+            }else if(this.tileY < player.tileY && (!movedVer && !movedHor)) {
+                this.room.moveSpriteTo(this,this.tileX,this.tileY-1)
+                this.tileY-=1
+                movedVer = true
             }
         }
         else{
-            if(this.room.row < player.room.row && !movedVer){
+            if(this.room.row < player.room.row){
                 this.room.moveSpriteTo(this,this.tileX,this.tileY+1)
                 this.tileY+=1
                 movedVer = true
@@ -51,12 +50,12 @@ class Enemy extends Phaser.GameObjects.Sprite {
                 this.tileY-=1
                 movedVer = true
             }
-            if(this.room.column > player.room.column && !movedHor){
+            if(this.room.column > player.room.column && !movedVer){
                 this.room.moveSpriteTo(this,this.tileX-1,this.tileY)
                 this.tileX-=1
                 movedHor = true
             }
-            else if(this.room.column < player.room.column && !movedHor){
+            else if(this.room.column < player.room.column && !movedVer && !movedHor){
                 this.room.moveSpriteTo(this,this.tileX+1,this.tileY)
                 this.tileX+=1
             }
