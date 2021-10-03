@@ -15,10 +15,6 @@ class Play extends Phaser.Scene {
         // List of Enemies
         this.enemies = []
 
-        //lever and UI stuff
-        this.leverClickbox = this.add.rectangle(300, 300, 250, 800).setOrigin(0, 0)
-        //this.lever = new Sprite(this, 300, 300, 'testPlayer')
-
         // Create Pause Button
         this.pauseButton = this.add.text(game.config.width/2, game.config.height - 25, 'PAUSE', 20).setOrigin(0.5)
         // Give Pause Button purpose
@@ -26,6 +22,14 @@ class Play extends Phaser.Scene {
         this.pauseButton.on('pointerdown', () => {
             this.pause();
         });
+
+        //lever and UI stuff
+        this.leverClickbox = this.add.rectangle(300, 300, 2000, 2000).setInteractive()
+        this.leverClickbox.on('pointerdown', function(pointer) {
+            //spin columns
+            console.log("Spun lever")
+        });
+        //this.lever = new Sprite(this, 300, 300, 'testPlayer')
 
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W)
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S)
