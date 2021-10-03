@@ -3,7 +3,7 @@ class Room {
 
         // Initialize Tilemap stuffs
         this.map = scene.add.tilemap(key);
-        let tileset = this.map.addTilesetImage('KenneySample', 'tiles')
+        let tileset = this.map.addTilesetImage('NeonTiles', 'tiles', 32, 32, 1, 1)
         let layer = this.map.createLayer("Tile Layer 1", tileset, x, y);
 
         // Store some important info
@@ -23,8 +23,8 @@ class Room {
         let moveTo = this.map.getTileAt(x, y)
         if (moveTo && !moveTo.properties["collides"]){
             // Update sprites position and report a successful move
-            sprite.x = this.x + x * 16
-            sprite.y = this.y + y * 16
+            sprite.x = this.x + x * 32
+            sprite.y = this.y + y * 32
             return true
         } else {
             // If we are in here, either the tile the sprite tried to go to is out of bounds, or is impassable
