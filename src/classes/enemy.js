@@ -35,6 +35,24 @@ class Enemy extends Phaser.GameObjects.Sprite {
                 }
             }
         }
+        else{
+            if(this.room.row < player.room.row){
+                this.room.moveSpriteTo(this,this.tileX,this.tileY+1)
+                this.tileY+=1
+            }
+            else{
+                this.room.moveSpriteTo(this,this.tileX,this.tileY-1)
+                this.tileY-=1
+            }
+            if(this.room.column < player.room.column){
+                this.room.moveSpriteTo(this,this.tileX-1,this.tileY)
+                this.tileX-=1
+            }
+            else{
+                this.room.moveSpriteTo(this,this.tileX+1,this.tileY)
+                this.tileX+=1
+            }
+        }
     }
 
 }
