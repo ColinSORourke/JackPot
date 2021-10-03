@@ -15,6 +15,10 @@ class Play extends Phaser.Scene {
         // List of Enemies
         this.enemies = []
 
+        //lever and UI stuff
+        this.leverClickbox = this.add.rectangle(300, 300, 250, 800).setOrigin(0, 0)
+        //this.lever = new Sprite(this, 300, 300, 'testPlayer')
+
         // Create Pause Button
         this.pauseButton = this.add.text(game.config.width/2, game.config.height - 25, 'PAUSE', 20).setOrigin(0.5)
         // Give Pause Button purpose

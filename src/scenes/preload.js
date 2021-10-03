@@ -12,7 +12,6 @@ class Preload extends Phaser.Scene
 
         this.load.image('testPlayer', './assets/Player.png')
         this.load.image('testEnemy', './assets/EnemyTest.png')
-        this.load.image('testLever', './assets/LeverPullyPart.png')
 
         this.createProgressbar(game.config.width / 2, game.config.height / 2);
     }
