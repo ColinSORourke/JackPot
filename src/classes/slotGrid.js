@@ -8,7 +8,7 @@ class slotGrid {
         while (j < 3){
             i = 0
             while (i < 3){
-                this.slots[j].push(new Room(scene, 'roomA', x + 7*16*j + margins*j, y + 7*16*i + margins*i, this, j, i))
+                this.slots[j].push(new Room(scene, 'roomA', x + 7*32*j + margins*j, y + 7*32*i + margins*i, this, j, i))
                 i += 1;
             }
             j += 1
