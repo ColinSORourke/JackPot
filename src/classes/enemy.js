@@ -13,7 +13,6 @@ class Enemy extends Phaser.GameObjects.Sprite {
     }
 
     update(player){
-
         //move one step towards player when called
         if (player.room == this.room){
             if (Math.abs(this.tileX - player.tileX) + Math.abs(this.tileY - player.tileY) <= 1){
@@ -40,15 +39,15 @@ class Enemy extends Phaser.GameObjects.Sprite {
                 this.room.moveSpriteTo(this,this.tileX,this.tileY+1)
                 this.tileY+=1
             }
-            else{
+            else if(this.room.row > player.room.row){
                 this.room.moveSpriteTo(this,this.tileX,this.tileY-1)
                 this.tileY-=1
             }
-            if(this.room.column < player.room.column){
+            if(this.room.column > player.room.column){
                 this.room.moveSpriteTo(this,this.tileX-1,this.tileY)
                 this.tileX-=1
             }
-            else{
+            else if(this.room.column < player.room.column){
                 this.room.moveSpriteTo(this,this.tileX+1,this.tileY)
                 this.tileX+=1
             }
