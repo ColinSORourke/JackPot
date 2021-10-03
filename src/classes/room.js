@@ -4,7 +4,7 @@ class Room {
         // Initialize Tilemap stuffs
         this.map = scene.add.tilemap(key);
         let tileset = this.map.addTilesetImage('NeonTiles', 'tiles', 32, 32, 1, 1)
-        let layer = this.map.createLayer("Tile Layer 1", tileset, x, y);
+        this.layer = this.map.createLayer("Tile Layer 1", tileset, x, y);
 
         // Store some important info
         this.x = x

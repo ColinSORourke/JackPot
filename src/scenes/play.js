@@ -25,9 +25,10 @@ class Play extends Phaser.Scene {
 
         //lever and UI stuff
         this.leverClickbox = this.add.rectangle(300, 300, 2000, 2000).setInteractive()
+        let currentScene = this;
         this.leverClickbox.on('pointerdown', function(pointer) {
-            //spin columns
-            console.log("Spun lever")
+            //spin columns that player is not in
+            currentScene.spinColumns(currentScene.player)
         });
         //this.lever = new Sprite(this, 300, 300, 'testPlayer')
 
@@ -61,5 +62,17 @@ class Play extends Phaser.Scene {
     pause() {
         this.scene.pause();
         this.scene.launch('pauseScene', { srcScene: "playScene" });
+    }
+
+    spinColumns(player){
+        for(let i = 0; i < 3; i++){
+            //only move rooms columns player is not in
+            if(i != player.column){
+                for(let j = 0; j < 3; j++){
+                    let currentRoom = this.slots.slots[i][j];
+                    currentRoom.layer.setY(-1);
+                }
+            }
+        }
     }
 }

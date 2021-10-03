@@ -54,4 +54,8 @@ class Player extends Phaser.GameObjects.Sprite {
     tick(){
         this.healthText.text = this.health
     }   
+
+    getColumn(){
+        return this.room.getColumn()
+    }
 }
