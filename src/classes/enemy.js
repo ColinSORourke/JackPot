@@ -14,50 +14,49 @@ class Enemy extends Phaser.GameObjects.Sprite {
 
     update(player){
         //move one step towards player when called
-        let movedHor = false
-        let movedVer = false
         if (player.room == this.room){
             if (Math.abs(this.tileX - player.tileX) + Math.abs(this.tileY - player.tileY) <= 1){
                 player.health -= 1
             }
-            if(this.tileX < player.tileX){
-                this.room.moveSpriteTo(this,this.tileX+1,this.tileY)
-                this.tileX+=1
-                movedHor = true
-            }else if(this.tileX > player.tileX && !movedHor){
-                this.room.moveSpriteTo(this,this.tileX-1,this.tileY)
-                this.tileX-=1
-                movedHor = true
+            else if(this.tileX < player.tileX){
+                if (this.room.moveSpriteTo(this,this.tileX+1,this.tileY)){
+                    this.tileX+=1
+                }
+            }else if(this.tileX > player.tileX){
+                if (this.room.moveSpriteTo(this,this.tileX-1,this.tileY)){
+                    this.tileX-=1
+                }
             }
-            if(this.tileY < player.tileY && !movedHor){
-                this.room.moveSpriteTo(this,this.tileX,this.tileY+1)
-                this.tileY+=1
-                movedVer = true
-            }else if(this.tileY < player.tileY && (!movedVer && !movedHor)) {
-                this.room.moveSpriteTo(this,this.tileX,this.tileY-1)
-                this.tileY-=1
-                movedVer = true
+            else if(this.tileY < player.tileY){
+                if (this.room.moveSpriteTo(this,this.tileX,this.tileY+1)){
+                    this.tileY+=1
+                }
+            }else if(this.tileY > player.tileY) {
+                if (this.room.moveSpriteTo(this,this.tileX,this.tileY-1)){
+                    this.tileY-=1
+                }
             }
         }
         else{
             if(this.room.row < player.room.row){
-                this.room.moveSpriteTo(this,this.tileX,this.tileY+1)
-                this.tileY+=1
-                movedVer = true
+                if (this.room.moveSpriteTo(this,this.tileX,this.tileY+1)){
+                    this.tileY+=1
+                }
             }
-            else if(this.room.row > player.room.row && !movedVer){
-                this.room.moveSpriteTo(this,this.tileX,this.tileY-1)
-                this.tileY-=1
-                movedVer = true
+            else if(this.room.row > player.room.row){
+                if (this.room.moveSpriteTo(this,this.tileX,this.tileY-1)){
+                    this.tileY-=1
+                }
             }
-            if(this.room.column > player.room.column && !movedVer){
-                this.room.moveSpriteTo(this,this.tileX-1,this.tileY)
-                this.tileX-=1
-                movedHor = true
+            else if(this.room.column > player.room.column){
+                if (this.room.moveSpriteTo(this,this.tileX-1,this.tileY)){
+                    this.tileX-=1
+                }
             }
-            else if(this.room.column < player.room.column && !movedVer && !movedHor){
-                this.room.moveSpriteTo(this,this.tileX+1,this.tileY)
-                this.tileX+=1
+            else if(this.room.column < player.room.column){
+                if (this.room.moveSpriteTo(this,this.tileX+1,this.tileY)){
+                    this.tileX+=1
+                }
             }
         }
     }
