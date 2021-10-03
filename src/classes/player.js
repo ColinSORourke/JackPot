@@ -9,6 +9,9 @@ class Player extends Phaser.GameObjects.Sprite {
         // Store so we can reference
         this.scene = scene
 
+        this.health = 10
+        this.healthText = scene.add.text(0,0, this.health)
+
         // The player stores the current room they are in, and their local coordinates within that room
         this.room = room
         this.tileX = x
@@ -48,4 +51,7 @@ class Player extends Phaser.GameObjects.Sprite {
         }
     }
 
+    tick(){
+        this.healthText.text = this.health
+    }   
 }
