@@ -42,10 +42,12 @@ class Play extends Phaser.Scene {
 
     //when player makes a move, update everything alongside them
     tick(){
+        
         let tempPlayer = this.player;
         this.enemies.forEach((e) => {
             e.update(tempPlayer)
         });
+        this.player.tick();
     }
 
     pause() {
