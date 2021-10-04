@@ -3,6 +3,7 @@ let config = {
     width: 1080,
     height: 800,
     scene: [Preload, Play, Pause],
+    pixelArt: true,
     physics: {
         default: 'arcade',
         arcade: {

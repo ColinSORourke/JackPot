@@ -4,21 +4,21 @@
      "export":
         {
          "format":"json",
-         "target":"..\/..\/..\/..\/..\/..\/Documents\/NeonRoom2.json"
+         "target":"NeonTileRoom.json"
         }
     },
- "height":7,
+ "height":5,
  "infinite":false,
  "layers":[
         {
-         "data":[2684354561, 2, 3221225476, 3221225476, 3221225476, 3221225476, 3221225475, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 4, 4, 4, 4, 2, 1610612737],
-         "height":7,
+         "data":[2, 2, 2, 2, 2, 2, 1610612740, 2, 2, 2, 2, 2684354564, 2, 1610612740, 2, 2, 2, 2, 2684354564, 2, 2, 2, 2, 2, 2],
+         "height":5,
          "id":1,
          "name":"Tile Layer 1",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
-         "width":7,
+         "width":5,
          "x":0,
          "y":0
         }],
@@ -82,5 +82,5 @@
  "tilewidth":32,
  "type":"map",
  "version":"1.6",
- "width":7
+ "width":5
 }

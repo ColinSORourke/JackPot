@@ -35,13 +35,13 @@ class Room {
                 // Check if can go left one room
                 if (this.column != 0){
                     let newRoom = this.parent.slots[this.column - 1][this.row]
-                    if (newRoom.moveSpriteTo(sprite, 6, sprite.tileY)) {
+                    if (newRoom.moveSpriteTo(sprite, 4, sprite.tileY)) {
                         // Normally moveSpriteTo doesn't update any of the sprite's properties, but in the case of moving to a new room it needs to step in.
                         sprite.room = newRoom
-                        sprite.tileX = 6
+                        sprite.tileX = 4
                     }
                 }
-            } else if (x == 7){
+            } else if (x == 5){
                 // check if can go right one room
                 if (this.column != 2){
                     let newRoom = this.parent.slots[this.column + 1][this.row]
@@ -54,14 +54,14 @@ class Room {
                 // check if can go up one room
                 if (this.row != 0){
                     let newRoom = this.parent.slots[this.column][this.row - 1]
-                    if (newRoom.moveSpriteTo(sprite, sprite.tileX, 6)) {
+                    if (newRoom.moveSpriteTo(sprite, sprite.tileX, 4)) {
                         sprite.room = newRoom
-                        sprite.tileY = 6
+                        sprite.tileY = 4
                     }
                 }
-            } else if (y == 7){
+            } else if (y == 5){
                 // check if can go down one room
-                if (this.row != 2){
+                if (this.row != 1){
                     let newRoom = this.parent.slots[this.column][this.row + 1]
                     if (newRoom.moveSpriteTo(sprite, sprite.tileX, 0)) {
                         sprite.room = newRoom

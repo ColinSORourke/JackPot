@@ -21,11 +21,11 @@ class Play extends Phaser.Scene {
         });
 
 
-        this.slots = new slotGrid(this, 100, 20, 10)
+        this.slots = new slotGrid(this, 135, 350, 10)
         this.slots.identifyPrizes()
 
         // Create Player in the center of a random room
-        this.player = new Player(this, 3, 3, 'testPlayer', 0, this.slots.randomRoom())
+        this.player = new Player(this, 2, 2, 'testPlayer', 0, this.slots.randomRoom())
 
         // List of Enemies
         this.enemies = []
@@ -59,8 +59,8 @@ class Play extends Phaser.Scene {
         this.player.update();
         
         if (Phaser.Input.Keyboard.JustUp(keySPACE)){ //spawn skeleton TEMPORARY
-            let newEnemy = new Enemy(this, 1, 1, 'testEnemy', 0, this.player.room, 'skeleton')
-            this.enemies.push(newEnemy)
+            //let newEnemy = new Enemy(this, 1, 1, 'testEnemy', 0, this.player.room, 'skeleton')
+            //this.enemies.push(newEnemy)
         }
     }
 
