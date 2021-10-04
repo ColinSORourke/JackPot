@@ -66,6 +66,17 @@ class Play extends Phaser.Scene {
     }
 
     spinColumns(){
+        let player = this.player
+        let index = 0
+        while (index < this.enemies.length){
+            let currEnemy = this.enemies[index]
+            if (currEnemy.room.column != player.room.column){
+                currEnemy.destroy()
+                this.enemies.splice(index, 1)
+            } else {
+                index += 1
+            }
+        }
         this.slots.deleteRooms(this.player)
         this.slots.replaceRooms(this.player)
         this.slots.identifyPrizes()
