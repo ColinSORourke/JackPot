@@ -12,14 +12,16 @@ class Play extends Phaser.Scene {
 
         this.machine = this.add.sprite(0, 0, "BGMachine", '0001').setOrigin(0,0)
         let idleFrameNames = this.machine.anims.generateFrameNames('BGMachine', { prefix: '', start: 1, end: 60, zeroPad: 4 });
-        this.machine.anims.create({
+        let mySpin = this.machine.anims.create({
             key: 'machinePull',
             frames: idleFrameNames,
             frameRate: 60,
             yoyo: true,
             repeat: 0
         });
-
+        this.machine.on(Phaser.Animations.Events.ANIMATION_COMPLETE, function () {
+            this.canSpin = true
+        }, this);
 
         this.slots = new slotGrid(this, 135, 350, 10)
         this.slots.identifyPrizes()
@@ -39,12 +41,16 @@ class Play extends Phaser.Scene {
         });
 
         //lever and UI stuff
-        this.leverClickbox = this.add.rectangle(300, 300, 2000, 2000).setInteractive()
+        this.leverClickbox = this.add.rectangle(750, 100, 300, 600).setInteractive().setOrigin(0,0)
+        this.canSpin = true
         let currentScene = this;
         this.leverClickbox.on('pointerdown', function(pointer) {
             //spin columns that player is not in
-            currentScene.spinColumns(currentScene.player)
-        });
+            if (this.canSpin){
+                currentScene.spinColumns(currentScene.player)
+                this.canSpin = false
+            }
+        }, this);
         //this.lever = new Sprite(this, 300, 300, 'testPlayer')
 
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W)
