@@ -47,9 +47,11 @@ class Play extends Phaser.Scene {
         let currentScene = this;
         this.leverClickbox.on('pointerdown', function(pointer) {
             //spin columns that player is not in
-            if (this.canSpin){
+            if (this.canSpin && this.player.health >= 2){
                 currentScene.spinColumns(currentScene.player)
                 this.canSpin = false
+                this.player.health -= 2
+                this.player.tick()
             }
         }, this);
         //this.lever = new Sprite(this, 300, 300, 'testPlayer')
@@ -117,6 +119,10 @@ class Play extends Phaser.Scene {
     spawnEnemy(){
         let newEnemy = new Enemy(this, 2, 2, 'testEnemy', 0, this.player.room, 'skeleton')
         this.enemies.push(newEnemy)
+    }
+
+    spawnMoney(){
+        this.player.health += 3
     }
 }
 

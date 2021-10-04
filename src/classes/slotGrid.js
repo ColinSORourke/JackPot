@@ -77,6 +77,9 @@ class slotGrid {
                 if (icon == 1){
                     this.scene.spawnEnemy();
                 }
+                else if (icon == 0){
+                    this.scene.spawnMoney();
+                }
                 console.log("WOW WINNER")
             }
             row += 1

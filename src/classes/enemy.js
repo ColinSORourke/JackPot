@@ -5,6 +5,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
         this.setOrigin(0.5,0.5)
 
         this.room = room
+        this.setDepth(2)
         this.room.moveSpriteTo(this, x, y) 
         this.tileX = x
         this.tileY = y
@@ -16,7 +17,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
         //move one step towards player when called
         if (player.room == this.room){
             if (Math.abs(this.tileX - player.tileX) + Math.abs(this.tileY - player.tileY) <= 1){
-                player.health -= 1
+                player.health -= 5
             }
             else if(this.tileX < player.tileX){
                 if (this.room.moveSpriteTo(this,this.tileX+1,this.tileY)){
