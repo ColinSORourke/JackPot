@@ -13,7 +13,7 @@ class Room {
         this.column = column
         this.row = row
 
-        this.icon = randInt(5)
+        this.icon = randInt(4)
     }
 
     // Whenever a sprite wants to move, it calls this function. 
