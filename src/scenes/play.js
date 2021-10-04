@@ -68,6 +68,7 @@ class Play extends Phaser.Scene {
     spinColumns(){
         this.slots.deleteRooms(this.player)
         this.slots.replaceRooms(this.player)
+        this.slots.identifyPrizes()
     }
 
 }
