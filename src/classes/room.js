@@ -13,7 +13,8 @@ class Room {
         this.column = column
         this.row = row
 
-        this.icon = randInt(4)
+        this.possIcons = ['coinIcon','enemyIcon']
+        this.icon = scene.add.sprite(x+16,y+16,this.possIcons[Phaser.Math.Between(0,1)])
     }
 
     // Whenever a sprite wants to move, it calls this function. 
