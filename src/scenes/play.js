@@ -15,8 +15,6 @@ class Play extends Phaser.Scene {
         // List of Enemies
         this.enemies = []
 
-        this.slots.deleteRooms(this.player)
-
         // Create Pause Button
         this.pauseButton = this.add.text(game.config.width/2, game.config.height - 25, 'PAUSE', 20).setOrigin(0.5)
         // Give Pause Button purpose
@@ -46,9 +44,8 @@ class Play extends Phaser.Scene {
         this.player.update();
         
         if (Phaser.Input.Keyboard.JustUp(keySPACE)){ //spawn skeleton TEMPORARY
-            //let newEnemy = new Enemy(this, 1, 1, 'testEnemy', 0, this.player.room, 'skeleton')
-            //this.enemies.push(newEnemy)
-            this.slots.replaceRooms(this.player);
+            let newEnemy = new Enemy(this, 1, 1, 'testEnemy', 0, this.player.room, 'skeleton')
+            this.enemies.push(newEnemy)
         }
     }
 
