@@ -13,6 +13,8 @@ class Preload extends Phaser.Scene
         this.load.tilemapTiledJSON('room2', './assets/rooms/JSONRooms/NeonRoom2.json')
         this.load.tilemapTiledJSON('room3', './assets/rooms/JSONRooms/NeonRoom3.json')
 
+        this.load.atlas('BGMachine', './assets/machine.png', './assets/machine.json')
+
         this.load.image('testPlayer', './assets/characters-01.png')
         this.load.image('testEnemy', './assets/characters-02.png')
 

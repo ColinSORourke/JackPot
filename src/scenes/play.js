@@ -7,6 +7,20 @@ class Play extends Phaser.Scene {
         console.log("We did it!")
 
         // Initialize slot machine dungeon
+        
+        
+
+        this.machine = this.add.sprite(0, 0, "BGMachine", '0001').setOrigin(0,0)
+        let idleFrameNames = this.machine.anims.generateFrameNames('BGMachine', { prefix: '', start: 1, end: 60, zeroPad: 4 });
+        this.machine.anims.create({
+            key: 'machinePull',
+            frames: idleFrameNames,
+            frameRate: 60,
+            yoyo: true,
+            repeat: 0
+        });
+
+
         this.slots = new slotGrid(this, 100, 20, 10)
         this.slots.identifyPrizes()
 
@@ -77,6 +91,7 @@ class Play extends Phaser.Scene {
                 index += 1
             }
         }
+        this.machine.anims.play('machinePull')
         this.slots.deleteRooms(this.player)
         this.slots.replaceRooms(this.player)
         this.slots.identifyPrizes()
