@@ -2,7 +2,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, key, frame, room, type){
         super(scene, 0, 0, key, frame)
         scene.add.existing(this)
-        this.setOrigin(0,0).setScale(2);
+        this.setOrigin(0,0)
 
         this.room = room
         this.room.moveSpriteTo(this, x, y) 
