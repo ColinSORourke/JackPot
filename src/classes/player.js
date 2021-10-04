@@ -11,7 +11,7 @@ class Player extends Phaser.GameObjects.Sprite {
         this.scene = scene
 
         this.health = 10
-        this.healthText = scene.add.text(0,0, this.health)
+        this.healthText = scene.add.text(665,155, this.health).setDepth(2)
 
         // The player stores the current room they are in, and their local coordinates within that room
         this.room = room
@@ -58,6 +58,9 @@ class Player extends Phaser.GameObjects.Sprite {
 
     tick(){
         this.healthText.text = this.health
+        if (this.health <= 0){
+            this.scene.lose()
+        }
     }   
 
     getColumn(){
