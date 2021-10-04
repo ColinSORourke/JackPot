@@ -14,7 +14,8 @@ class Room {
         this.row = row
 
         this.possIcons = ['coinIcon','enemyIcon']
-        this.icon = scene.add.sprite(x+16,y+16,this.possIcons[Phaser.Math.Between(0,1)])
+        this.icon = Phaser.Math.Between(0,1)
+        this.iconSprite = scene.add.sprite(x+80,y+80,this.possIcons[this.icon]).setAlpha(0.5).setScale(2)
     }
 
     // Whenever a sprite wants to move, it calls this function. 
