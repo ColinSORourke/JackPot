@@ -67,12 +67,24 @@ class Play extends Phaser.Scene {
     spinColumns(player){
         for(let i = 0; i < 3; i++){
             //only move rooms columns player is not in
-            if(i != player.column){
-                for(let j = 0; j < 3; j++){
-                    let currentRoom = this.slots.slots[i][j];
-                    currentRoom.layer.setY(-1);
-                }
+            for(let j = 0; j < 3; j++){
+                if(i != this.player.room.column){
+                    let currentRoom = this.slots.slots[i][j]
+                    currentRoom.destroy()
+                    /*
+                    let scroll = this.tweens.add({
+                        targets: currentRoom,
+                    ease: 'Linear',
+                        duration: 2000,
+                        onComplete: currentRoom.destroy(),
+                        y: -20
+                    })
+                    */
+                    this.slots.slots[i][j] = new Room(this, 'roomA', 100 + 7*32*j + 10*j, 20 + 7*32*i + 10*i, this, j, i)
             }
         }
+            
+        }
     }
+
 }
