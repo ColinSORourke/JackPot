@@ -10,7 +10,7 @@ class Play extends Phaser.Scene {
         
         
 
-        this.machine = this.add.sprite(0, 0, "BGMachine", '0001').setOrigin(0,0)
+        this.machine = this.add.sprite(0, 0, "BGMachine", '0001').setOrigin(0,0).setDepth(-2)
         let idleFrameNames = this.machine.anims.generateFrameNames('BGMachine', { prefix: '', start: 1, end: 60, zeroPad: 4 });
         let mySpin = this.machine.anims.create({
             key: 'machinePull',
@@ -52,6 +52,18 @@ class Play extends Phaser.Scene {
             }
         }, this);
         //this.lever = new Sprite(this, 300, 300, 'testPlayer')
+
+        image = this.add.sprite(73, 370, 'whiteRect').setOrigin(0,0).setDepth(-1).setAlpha(0.7)
+        fromColors = getRandomVertexColors();
+        image.setTint(
+            fromColors.topLeft.color,
+            fromColors.topRight.color,
+            fromColors.bottomLeft.color,
+            fromColors.bottomRight.color
+        );
+        tintTween = tintTween.bind(this);
+        initTweens();
+
 
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W)
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S)
@@ -103,4 +115,75 @@ class Play extends Phaser.Scene {
         this.slots.identifyPrizes()
     }
 
+}
+
+
+
+
+// COPYING FROM https://phaser.io/examples/v3/view/tweens/tint-tween
+
+var tween;
+var image;
+var fromColors;
+var toColors;
+
+function getRandomVertexColors ()
+{
+    // Create a random color for each vertex.
+    // RandomRGB returns a Phaser.Display.Color object with random RGB values.
+    var RandomRGB = Phaser.Display.Color.RandomRGB;
+    return {
+        topLeft: RandomRGB(),
+        topRight: RandomRGB(),
+        bottomLeft: RandomRGB(),
+        bottomRight: RandomRGB()
+    };
+}
+
+function getTintColor (vertex)
+{
+
+    // Interpolate between the fromColor and toColor of the current vertex,
+    // using the current tween value.
+    var tint = Phaser.Display.Color.Interpolate.ColorWithColor(
+        fromColors[vertex],
+        toColors[vertex],
+        100,
+        tween.getValue()
+    );
+
+    // Interpolate.ColorWithColor returns a Javascript object with
+    // interpolated RGB values. We convert it to a Phaser.Display.Color object
+    // in order to get the integer value of the tint color.
+    return Phaser.Display.Color.ObjectToColor(tint).color;
+}
+
+function tintTween (fromColors, toColors, callback)
+{
+    tween = this.tweens.addCounter({
+        from: 0,
+        to: 100,
+        duration: 2000,
+        onUpdate: function ()
+        {
+            image.setTint(
+                getTintColor('topLeft'),
+                getTintColor('topRight'),
+                getTintColor('bottomLeft'),
+                getTintColor('topRight')
+            );
+        },
+        onComplete: callback
+    });
+}
+
+function initTweens ()
+{
+    fromColors = toColors || fromColors;
+    toColors = getRandomVertexColors();
+    tintTween(
+        fromColors,
+        toColors,
+        initTweens
+    );
 }
