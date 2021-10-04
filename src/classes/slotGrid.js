@@ -50,7 +50,8 @@ class slotGrid {
             if (column != player.room.column){
                 let row = 0
                 while (row < 3){
-                    this.slots[column].push(new Room(this.scene, 'roomA', this.startX + 7*32*column + this.margins*column, this.startY + 7*32*row + this.margins*row, this, column, row))
+                    let roomKey = "room" + randInt(4)
+                    this.slots[column].push(new Room(this.scene, roomKey, this.startX + 7*32*column + this.margins*column, this.startY + 7*32*row + this.margins*row, this, column, row))
                     
                     row += 1
                 }
