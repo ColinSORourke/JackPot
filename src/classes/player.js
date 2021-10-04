@@ -4,7 +4,7 @@ class Player extends Phaser.GameObjects.Sprite {
         // Add sprite stuff
         super(scene, 0, 0, key, frame)
         scene.add.existing(this)
-        this.setOrigin(0,0).setScale(2)
+        this.setOrigin(0,0)
 
         // Store so we can reference
         this.scene = scene
