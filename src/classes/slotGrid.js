@@ -36,6 +36,7 @@ class slotGrid {
                     
                     row += 1
                 }
+                this.slots[column] = []
             }
 
             column += 1
