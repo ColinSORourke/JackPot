@@ -47,10 +47,10 @@ class Play extends Phaser.Scene {
         let currentScene = this;
         this.leverClickbox.on('pointerdown', function(pointer) {
             //spin columns that player is not in
-            if (this.canSpin && this.player.health >= 2){
+            if (this.canSpin && this.player.health >= 1){
                 currentScene.spinColumns(currentScene.player)
                 this.canSpin = false
-                this.player.health -= 2
+                this.player.health -= 1
                 this.player.tick()
             }
         }, this);
