@@ -36,25 +36,19 @@ class Play extends Phaser.Scene {
         // List of Enemies
         this.enemies = []
 
-        // Create Pause Button
-        this.pauseButton = this.add.text(game.config.width/2, game.config.height - 25, 'PAUSE', 20).setOrigin(0.5)
-        // Give Pause Button purpose
-        this.pauseButton.setInteractive();
-        this.pauseButton.on('pointerdown', () => {
-            this.pause();
-        });
-
         //lever and UI stuff
         this.leverClickbox = this.add.rectangle(750, 100, 300, 600).setInteractive().setOrigin(0,0)
         this.canSpin = true
         let currentScene = this;
         this.leverClickbox.on('pointerdown', function(pointer) {
             //spin columns that player is not in
-            if (this.canSpin){
+            if (this.canSpin && this.player.health >= 1){
                 //play sound
                 this.spin.play()
                 currentScene.spinColumns(currentScene.player)
                 this.canSpin = false
+                this.player.health -= 1
+                this.player.tick()
             }
         }, this);
         //this.lever = new Sprite(this, 300, 300, 'testPlayer')
@@ -96,7 +90,7 @@ class Play extends Phaser.Scene {
         this.player.tick();
     }
 
-    pause() {
+    lose() {
         this.scene.pause();
         this.scene.launch('pauseScene', { srcScene: "playScene" });
     }
@@ -122,6 +116,10 @@ class Play extends Phaser.Scene {
     spawnEnemy(){
         let newEnemy = new Enemy(this, 2, 2, 'testEnemy', 0, this.player.room, 'skeleton')
         this.enemies.push(newEnemy)
+    }
+
+    spawnMoney(){
+        this.player.health += 3
     }
 }
 
