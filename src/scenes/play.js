@@ -8,6 +8,7 @@ class Play extends Phaser.Scene {
 
         // Initialize slot machine dungeon
         this.slots = new slotGrid(this, 100, 20, 10)
+        this.slots.identifyPrizes()
 
         // Create Player in the center of a random room
         this.player = new Player(this, 3, 3, 'testPlayer', 0, this.slots.randomRoom())

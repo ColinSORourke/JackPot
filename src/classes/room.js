@@ -12,6 +12,8 @@ class Room {
         this.parent = parent
         this.column = column
         this.row = row
+
+        this.icon = randInt(5)
     }
 
     // Whenever a sprite wants to move, it calls this function. 

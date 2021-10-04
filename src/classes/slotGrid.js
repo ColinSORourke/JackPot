@@ -58,4 +58,23 @@ class slotGrid {
             column += 1
         }
     }
+
+    identifyPrizes(){
+        let row = 0
+        while (row < 3){
+            let column = 0
+            let icon = this.slots[column][row].icon
+            let match = true
+            while (column < 3 && match){
+                if (this.slots[column][row].icon != icon){
+                    match = false
+                }
+                column += 1
+            }
+            if (match){
+                console.log("WOW WINNER")
+            }
+            row += 1
+        }
+    }
 }
