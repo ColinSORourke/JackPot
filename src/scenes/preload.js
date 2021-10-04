@@ -8,6 +8,7 @@ class Preload extends Phaser.Scene
     {   
         this.load.image('Head', './assets/ColinHead.jpg');
         this.load.image('tiles', './assets/tiles.png')
+        this.load.image('whiteRect', './assets/WhiteRect.png')
         this.load.tilemapTiledJSON('room0', './assets/rooms/JSONRooms/NeonTileRoom.json')
         this.load.tilemapTiledJSON('room1', './assets/rooms/JSONRooms/NeonRoom1.json')
         this.load.tilemapTiledJSON('room2', './assets/rooms/JSONRooms/NeonRoom2.json')
