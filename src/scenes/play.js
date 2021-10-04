@@ -3,12 +3,15 @@ class Play extends Phaser.Scene {
         super("playScene")    
     }
 
+    preload(){
+    }
+
     create(){
         console.log("We did it!")
 
         // Initialize slot machine dungeon
         
-        
+        this.spin = this.sound.add('spin')
 
         this.machine = this.add.sprite(0, 0, "BGMachine", '0001').setOrigin(0,0).setDepth(-2)
         let idleFrameNames = this.machine.anims.generateFrameNames('BGMachine', { prefix: '', start: 1, end: 60, zeroPad: 4 });
@@ -48,6 +51,8 @@ class Play extends Phaser.Scene {
         this.leverClickbox.on('pointerdown', function(pointer) {
             //spin columns that player is not in
             if (this.canSpin){
+                //play sound
+                this.spin.play()
                 currentScene.spinColumns(currentScene.player)
                 this.canSpin = false
             }

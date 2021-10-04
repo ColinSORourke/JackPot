@@ -24,6 +24,7 @@ class Preload extends Phaser.Scene
 
         this.load.image('instructions','./assets/instructions-01.png')
 
+        this.load.audio('spin','assets/Sound/spin.wav')
 
         this.createProgressbar(game.config.width / 2, game.config.height / 2);
     }
