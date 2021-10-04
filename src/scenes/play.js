@@ -32,15 +32,7 @@ class Play extends Phaser.Scene {
 
         // List of Enemies
         this.enemies = []
-
-        // Create Pause Button
-        this.pauseButton = this.add.text(game.config.width/2, game.config.height - 25, 'PAUSE', 20).setOrigin(0.5)
-        // Give Pause Button purpose
-        this.pauseButton.setInteractive();
-        this.pauseButton.on('pointerdown', () => {
-            this.pause();
-        });
-
+        
         //lever and UI stuff
         this.leverClickbox = this.add.rectangle(750, 100, 300, 600).setInteractive().setOrigin(0,0)
         this.canSpin = true
@@ -93,7 +85,7 @@ class Play extends Phaser.Scene {
         this.player.tick();
     }
 
-    pause() {
+    lose() {
         this.scene.pause();
         this.scene.launch('pauseScene', { srcScene: "playScene" });
     }

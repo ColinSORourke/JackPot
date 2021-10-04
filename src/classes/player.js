@@ -58,6 +58,9 @@ class Player extends Phaser.GameObjects.Sprite {
 
     tick(){
         this.healthText.text = this.health
+        if (this.health <= 0){
+            this.scene.lose()
+        }
     }   
 
     getColumn(){
