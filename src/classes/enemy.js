@@ -2,7 +2,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, key, frame, room, type){
         super(scene, 0, 0, key, frame)
         scene.add.existing(this)
-        this.setOrigin(0,0).setScale(2);
+        this.setOrigin(0.5,0.5)
 
         this.room = room
         this.room.moveSpriteTo(this, x, y) 
@@ -21,19 +21,23 @@ class Enemy extends Phaser.GameObjects.Sprite {
             else if(this.tileX < player.tileX){
                 if (this.room.moveSpriteTo(this,this.tileX+1,this.tileY)){
                     this.tileX+=1
+                    this.angle = 90
                 }
             }else if(this.tileX > player.tileX){
                 if (this.room.moveSpriteTo(this,this.tileX-1,this.tileY)){
                     this.tileX-=1
+                    this.angle = 270
                 }
             }
             else if(this.tileY < player.tileY){
                 if (this.room.moveSpriteTo(this,this.tileX,this.tileY+1)){
                     this.tileY+=1
+                    this.angle = 180
                 }
             }else if(this.tileY > player.tileY) {
                 if (this.room.moveSpriteTo(this,this.tileX,this.tileY-1)){
                     this.tileY-=1
+                    this.angle = 0
                 }
             }
         }

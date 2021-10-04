@@ -23,8 +23,8 @@ class Room {
         let moveTo = this.map.getTileAt(x, y)
         if (moveTo && !moveTo.properties["collides"]){
             // Update sprites position and report a successful move
-            sprite.x = this.x + x * 32
-            sprite.y = this.y + y * 32
+            sprite.x = this.x + x * 32 + 16
+            sprite.y = this.y + y * 32 + 16
             return true
         } else {
             // If we are in here, either the tile the sprite tried to go to is out of bounds, or is impassable

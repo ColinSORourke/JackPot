@@ -4,7 +4,7 @@ class Player extends Phaser.GameObjects.Sprite {
         // Add sprite stuff
         super(scene, 0, 0, key, frame)
         scene.add.existing(this)
-        this.setOrigin(0,0).setScale(2)
+        this.setOrigin(0.5,0.5)
 
         // Store so we can reference
         this.scene = scene
@@ -28,6 +28,7 @@ class Player extends Phaser.GameObjects.Sprite {
                 // so when it is false, we don't update our tile coordinate or cause the scene to tick
                 this.tileY -= 1
                 this.scene.tick()
+                this.angle = 0;
             }
         }
         // Same process for all other directions
@@ -35,18 +36,21 @@ class Player extends Phaser.GameObjects.Sprite {
             if (this.room.moveSpriteTo(this, this.tileX, this.tileY + 1)){
                 this.tileY += 1
                 this.scene.tick()
+                this.angle = 180;
             }
         }
         if (Phaser.Input.Keyboard.JustDown(keyLEFT)){
             if (this.room.moveSpriteTo(this, this.tileX - 1, this.tileY)){
                 this.tileX -= 1
                 this.scene.tick()
+                this.angle = 270;
             }
         }
         if (Phaser.Input.Keyboard.JustDown(keyRIGHT)){
             if (this.room.moveSpriteTo(this, this.tileX + 1, this.tileY)){
                 this.tileX += 1
                 this.scene.tick()
+                this.angle = 90;
             }
         }
     }

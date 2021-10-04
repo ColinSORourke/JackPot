@@ -10,8 +10,8 @@ class Preload extends Phaser.Scene
         this.load.image('tiles', './assets/tiles.png')
         this.load.tilemapTiledJSON('roomA', './assets/rooms/JSONRooms/NeonTileRoom.json')
 
-        this.load.image('testPlayer', './assets/Player.png')
-        this.load.image('testEnemy', './assets/EnemyTest.png')
+        this.load.image('testPlayer', './assets/characters-01.png')
+        this.load.image('testEnemy', './assets/characters-02.png')
 
         this.createProgressbar(game.config.width / 2, game.config.height / 2);
     }
