@@ -24,10 +24,11 @@ class Play extends Phaser.Scene {
         }, this);
 
         this.slots = new slotGrid(this, 135, 350, 10)
-        this.slots.identifyPrizes()
+        
 
         // Create Player in the center of a random room
         this.player = new Player(this, 2, 2, 'testPlayer', 0, this.slots.randomRoom())
+        
 
         // List of Enemies
         this.enemies = []
@@ -53,7 +54,7 @@ class Play extends Phaser.Scene {
         }, this);
         //this.lever = new Sprite(this, 300, 300, 'testPlayer')
 
-        image = this.add.sprite(73, 370, 'whiteRect').setOrigin(0,0).setDepth(-1).setAlpha(0.7)
+        image = this.add.sprite(60, 345, 'whiteRect').setOrigin(0,0).setDepth(-1).setAlpha(0.7)
         fromColors = getRandomVertexColors();
         image.setTint(
             fromColors.topLeft.color,
@@ -72,16 +73,12 @@ class Play extends Phaser.Scene {
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
 
         this.instructions = this.add.sprite(0,0,'instructions').setOrigin(0)
+        this.slots.identifyPrizes()
     }
 
     update(){
         // Hook in the player's update function
         this.player.update();
-        
-        if (Phaser.Input.Keyboard.JustUp(keySPACE)){ //spawn skeleton TEMPORARY
-            //let newEnemy = new Enemy(this, 1, 1, 'testEnemy', 0, this.player.room, 'skeleton')
-            //this.enemies.push(newEnemy)
-        }
     }
 
     //when player makes a move, update everything alongside them
@@ -117,6 +114,10 @@ class Play extends Phaser.Scene {
         this.slots.identifyPrizes()
     }
 
+    spawnEnemy(){
+        let newEnemy = new Enemy(this, 2, 2, 'testEnemy', 0, this.player.room, 'skeleton')
+        this.enemies.push(newEnemy)
+    }
 }
 
 
